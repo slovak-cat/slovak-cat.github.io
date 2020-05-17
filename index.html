@@ -7,6 +7,72 @@
 
 <link rel="stylesheet" href="./style.css">
 <link rel="shortcut icon" href="./iicon/memojisticker.png">
+<style>
+  .share {
+  margin: 2em 0;
+}
+
+.share-buttons {
+  display: none;
+  justify-content: space-between;
+}
+
+.share-btn {
+  display: inline-block;
+  padding: 8px 20px;
+  background: #00ad45;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.share-btn:hover {
+  opacity: .85;
+  color: #fff;
+}
+
+.share-btn.web-share {
+  cursor: pointer;
+  width: 100%;
+}
+
+.share-btn.tw {
+  background: #1da1f2;
+  margin: 0 8px 0 0;
+}
+
+.share-btn.fb {
+  background: #3b5998;
+  margin: 0 8px 0 0;
+}
+
+.share-btn.pk {
+  background: #ef4056;
+}
+</style>
+<script>
+  /** codepen.io/pnk/pen/VMLWdv web share api */
+  var shareBtn = document.getElementById('share-btn');
+    shareFallback = document.getElementById('share-fallback');
+    pageTitle = document.querySelector('h1.entry-title').textContent;
+    pageUrl = "https://pakin.me/blog/share-button-with-web-share-api/";
+
+shareBtn.addEventListener("click", function(ev) {
+  if (navigator.share) {
+    navigator.share({
+        text: pageTitle,
+        url: pageUrl
+      });
+  } else {
+    shareFallback.style.display = 'flex';
+    shareBtn.style.display = 'none';
+  }
+});
+
+</script>
 
   </head>
   <body class="markdown-body wysiwyg-content">
@@ -19,6 +85,14 @@
       <h1 id="it-s-me-slovak_cat">It's me Slovak_Cat</h1>
       <p><br></p><h1 id="my-resently-projects-">My resently Projects:</h1>
       <p><a href="https://slovak-cat.github.io/iicon" target="_blank">iIcon</a> Apple icon museum.</p>
+      <div class="share">
+        <div id="share-btn" class="share-btn web-share">Share</div>
+        <div id="share-fallback" class="share-buttons">
+          <a class="share-btn fb" href="https://facebook.com/sharer/sharer.php?u=https://pakin.me/blog/create-share-button-with-web-share-api/" target="_blank">Share</a>
+          <a class="share-btn tw" href="https://twitter.com/intent/tweet/?text=Web+Share+API+with+fallback&url=https://pakin.me/blog/create-share-button-with-web-share-api/&via=pknme" target="_blank">Tweet</a>
+          <a class="share-btn pk" href="https://getpocket.com/edit?url=https://pakin.me/blog/share-button-with-web-share-api/" target="_blank">Save</a>
+        </div>
+      </div>
     </main>
 
   <!-- <script type="text/javascript">
